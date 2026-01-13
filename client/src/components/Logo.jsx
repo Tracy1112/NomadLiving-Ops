@@ -35,6 +35,12 @@ const LogoWrapper = styled.div`
     justify-content: center;
     margin: 0 auto;
   }
+
+  /* When used in register/login forms, ensure full centering */
+  .logo & {
+    justify-content: center;
+    width: 100%;
+  }
 `
 
 const Logo = () => {

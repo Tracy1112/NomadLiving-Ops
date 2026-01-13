@@ -7,11 +7,17 @@ const Wrapper = styled.section`
   .form {
     max-width: 400px;
     border-top: 5px solid var(--primary-500);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .logo {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
-    margin-bottom: 1.38rem;
+    margin-bottom: 2rem;
+    width: 100%;
   }
   h4 {
     text-align: center;
