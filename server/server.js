@@ -92,15 +92,21 @@ const port = process.env.PORT || 5100
 const startServer = async () => {
   try {
     // Validate MongoDB connection string
-    const mongoUrl = process.env.MONGO_URL
+    const mongoUrl = process.env.MONGO_URL?.trim()
     if (!mongoUrl) {
+      console.error('❌ MONGO_URL is not set or empty')
+      console.error('Environment variables:', Object.keys(process.env).filter(k => k.includes('MONGO')))
       throw new Error('MONGO_URL environment variable is not set. Please check your .env file or environment variables.')
     }
     
     if (!mongoUrl.startsWith('mongodb://') && !mongoUrl.startsWith('mongodb+srv://')) {
+      console.error('❌ Invalid MONGO_URL format')
+      console.error('MONGO_URL value:', JSON.stringify(mongoUrl))
+      console.error('MONGO_URL length:', mongoUrl.length)
+      console.error('First 50 chars:', mongoUrl.substring(0, 50))
       throw new Error(
         `Invalid MONGO_URL format. Expected connection string to start with "mongodb://" or "mongodb+srv://".\n` +
-        `Current value: ${mongoUrl.substring(0, 20)}...\n` +
+        `Current value (first 50 chars): ${mongoUrl.substring(0, 50)}\n` +
         `Please check your .env file or Render environment variables.`
       )
     }
