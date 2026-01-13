@@ -91,6 +91,20 @@ const port = process.env.PORT || 5100
  */
 const startServer = async () => {
   try {
+    // Validate MongoDB connection string
+    const mongoUrl = process.env.MONGO_URL
+    if (!mongoUrl) {
+      throw new Error('MONGO_URL environment variable is not set. Please check your .env file or environment variables.')
+    }
+    
+    if (!mongoUrl.startsWith('mongodb://') && !mongoUrl.startsWith('mongodb+srv://')) {
+      throw new Error(
+        `Invalid MONGO_URL format. Expected connection string to start with "mongodb://" or "mongodb+srv://".\n` +
+        `Current value: ${mongoUrl.substring(0, 20)}...\n` +
+        `Please check your .env file or Render environment variables.`
+      )
+    }
+
     // Optimize MongoDB connection for production
     const mongooseOptions = {
       // Connection pool settings
@@ -102,7 +116,7 @@ const startServer = async () => {
       retryWrites: true,
     }
 
-    await mongoose.connect(process.env.MONGO_URL, mongooseOptions)
+    await mongoose.connect(mongoUrl, mongooseOptions)
     
     console.log('MongoDB connected successfully')
     
