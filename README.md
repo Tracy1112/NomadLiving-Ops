@@ -271,8 +271,8 @@ PORT=5100
 
 # MongoDB Connection
 MONGO_URL=mongodb://localhost:27017/nomadops
-# Or MongoDB Atlas:
-# MONGO_URL=mongodb+srv://username:password@cluster.mongodb.net/nomadops?retryWrites=true&w=majority
+# Or MongoDB Atlas (get connection string from your MongoDB Atlas dashboard):
+# MONGO_URL=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
 
 # JWT Secret (minimum 32 characters)
 JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long
