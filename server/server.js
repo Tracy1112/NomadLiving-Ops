@@ -22,6 +22,7 @@ import morgan from 'morgan'
 import mongoose from 'mongoose'
 import helmet from 'helmet'
 import mongoSanitize from 'express-mongo-sanitize'
+import cors from 'cors'
 
 import jobRouter from './routes/jobRouter.js'
 import authRouter from './routes/authRouter.js'
@@ -58,6 +59,30 @@ app.get('/health', (req, res) => {
     uptime: process.uptime()
   })
 })
+
+// CORS Configuration
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+  'http://localhost:3000',
+].filter(Boolean) // Remove undefined values
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, Postman, etc.)
+      if (!origin) return callback(null, true)
+      if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
+        callback(null, true)
+      } else {
+        callback(new Error('Not allowed by CORS'))
+      }
+    },
+    credentials: true, // Allow cookies to be sent
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+)
 
 // Middleware
 app.use(morgan('dev')) // HTTP request logger

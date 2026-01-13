@@ -68,8 +68,8 @@ export const login = async (req, res) => {
   const oneDay = 1000 * 60 * 60 * 24
   res.cookie('token', token, {
     httpOnly: true,
-    sameSite: 'Strict',
-    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // 'None' for cross-origin in production
+    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
     expires: new Date(Date.now() + oneDay),
   })
 
@@ -87,6 +87,8 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   res.cookie('token', 'logout', {
     httpOnly: true,
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict',
+    secure: process.env.NODE_ENV === 'production',
     expires: new Date(Date.now()),
   })
   res.status(StatusCodes.OK).json({ msg: 'user logged out!' })
