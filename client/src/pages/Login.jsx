@@ -1,4 +1,5 @@
 import { Link, Form, redirect, useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage'
 import { FormRow, Logo, SubmitBtn } from '../components'
 import customFetch from '../utils/customFetch'
@@ -22,6 +23,7 @@ export const action =
 
 const Login = () => {
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
 
   const loginDemoUser = async () => {
     const demoData = {
@@ -30,6 +32,7 @@ const Login = () => {
     }
     try {
       await customFetch.post('/auth/login', demoData)
+      queryClient.invalidateQueries()
       toast.success('Take a test drive')
       navigate('/dashboard')
     } catch (error) {

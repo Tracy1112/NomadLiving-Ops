@@ -16,6 +16,8 @@ const Wrapper = styled.section`
   h4 {
     text-align: center;
     margin-bottom: 1.38rem;
+    margin-top: 0;
+    text-transform: capitalize;
   }
   p {
     margin-top: 1rem;
