@@ -1,0 +1,19 @@
+name: Keep Render Service Alive
+
+# 每10分钟ping一次Render服务，防止免费层休眠
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # 每10分钟运行一次
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Render Health Endpoint
+        run: |
+          echo "Pinging Render service..."
+          curl -f https://meetjob-mern.onrender.com/health || exit 1
+          echo "Service is alive!"
+        timeout-minutes: 1
+
