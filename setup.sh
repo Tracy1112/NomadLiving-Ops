@@ -44,7 +44,7 @@ if [ ! -f ".env" ]; then
 NODE_ENV=development
 PORT=5100
 MONGO_URL=mongodb://localhost:27017/nomadops
-JWT_SECRET=7146cc15783bf229e8554d65edc919a331af8220993611b54c00167c49a16abd
+JWT_SECRET=your_super_secret_jwt_key_min_32_characters_long
 CLOUD_NAME=
 CLOUD_API_KEY=
 CLOUD_API_SECRET=
