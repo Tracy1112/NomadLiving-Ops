@@ -4,20 +4,22 @@ const Wrapper = styled.section`
   min-height: 100vh;
   display: grid;
   align-items: center;
+  .form {
+    max-width: 400px;
+    border-top: 5px solid var(--primary-500);
+  }
   .logo {
     display: block;
     margin: 0 auto;
     margin-bottom: 1.38rem;
-  }
-  .form {
-    max-width: 400px;
-    border-top: 5px solid var(--primary-500);
   }
   h4 {
     text-align: center;
     margin-bottom: 1.38rem;
     margin-top: 0;
     text-transform: capitalize;
+    display: block;
+    width: 100%;
   }
   p {
     margin-top: 1rem;

@@ -31,12 +31,14 @@ const Login = () => {
       password: 'lucyking1112',
     }
     try {
-      await customFetch.post('/auth/login', demoData)
+      const response = await customFetch.post('/auth/login', demoData)
       queryClient.invalidateQueries()
       toast.success('Take a test drive')
       navigate('/dashboard')
     } catch (error) {
-      toast.error(error?.response?.data?.msg)
+      const errorMsg = error?.response?.data?.msg || error?.message || 'Login failed'
+      console.error('Demo login error:', error)
+      toast.error(errorMsg)
     }
   }
   return (
