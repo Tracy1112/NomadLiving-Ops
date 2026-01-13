@@ -6,15 +6,19 @@ const Wrapper = styled.section`
   align-items: center;
   .form {
     max-width: 400px;
-    border-top: 5px solid var(--primary-500);
     margin: 0 auto;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .logo {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-bottom: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
     width: 100%;
   }
   h4 {
