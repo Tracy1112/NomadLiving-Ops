@@ -6,28 +6,16 @@ const Wrapper = styled.section`
   align-items: center;
   .form {
     max-width: 400px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-top: 5px solid var(--primary-500);
   }
   .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     margin: 0 auto;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    width: 100%;
+    margin-bottom: 1.38rem;
   }
   h4 {
     text-align: center;
     margin-bottom: 1.38rem;
-    margin-top: 0;
-    text-transform: capitalize;
-    display: block;
-    width: 100%;
   }
   p {
     margin-top: 1rem;
