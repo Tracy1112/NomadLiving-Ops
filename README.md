@@ -15,6 +15,7 @@ A centralized MERN-stack operations dashboard enabling real-time ticket tracking
 ## Table of Contents
 
 - [Overview](#overview)
+- [Explore the Ecosystem](#explore-the-ecosystem)
 - [Problem & Solution](#problem--solution)
 - [Key Features](#key-features)
 - [Architecture](#architecture)
@@ -27,8 +28,8 @@ A centralized MERN-stack operations dashboard enabling real-time ticket tracking
 - [Testing](#testing)
 - [API Documentation](#api-documentation)
 - [Deployment](#deployment)
-- [Explore the Ecosystem](#explore-the-ecosystem)
 - [License](#license)
+- [Author](#author)
 
 ---
 
@@ -39,6 +40,24 @@ A centralized MERN-stack operations dashboard enabling real-time ticket tracking
 **Target Audience:** Internal Staff, Property Managers, Operations Administrators
 
 **Ecosystem Role:** The operational intelligence layer connecting property maintenance, supply chain management, and performance analytics in a unified interface.
+
+---
+
+## Explore the Ecosystem
+
+**NomadLiving Ops Console** is part of a comprehensive luxury glamping ecosystem:
+
+### 🏕️ [NomadLiving Stays](https://github.com/yourusername/nomadliving-stays)
+
+**Project A** | Guest-facing booking platform for luxury glamping experiences
+
+### 🛍️ [NomadLiving Boutique](https://github.com/yourusername/nomadliving-boutique)
+
+**Project B** | E-commerce platform for glamping gear and lifestyle products
+
+### 🎛️ **NomadLiving Ops Console** (This Project)
+
+**Project C** | Internal operations dashboard for property and vendor management
 
 ---
 
@@ -180,7 +199,7 @@ A centralized MERN-stack dashboard enabling:
 
 ### Key Architectural Decisions
 
-- **Monolithic Frontend-Backend:** Single deployment for simplified operations
+- **Separate Frontend-Backend Deployment:** Frontend on Vercel, Backend on Render for optimal performance
 - **RESTful API Design:** Standard HTTP methods for predictable interactions
 - **State Management Separation:** React Query for server state, Redux for UI state
 - **Component-Based UI:** Reusable React components with consistent styling
@@ -192,32 +211,28 @@ A centralized MERN-stack dashboard enabling:
 
 ### Frontend
 
-| Technology                       | Purpose                               | Version |
-| -------------------------------- | ------------------------------------- | ------- |
-| **React**                        | UI library and component framework    | 18.3+   |
-| **React Router v6**              | Client-side routing with data loaders | 6.10+   |
-| **Redux Toolkit**                | Global state management               | 2.6+    |
-| **React Query (TanStack Query)** | Server state management and caching   | 4.29+   |
-| **Styled Components**            | CSS-in-JS styling solution            | 5.3+    |
-| **Recharts**                     | Data visualization and charting       | 2.5+    |
-| **Axios**                        | HTTP client for API communication     | 1.3+    |
-| **React Toastify**               | User notification system              | 9.1+    |
-| **Vite**                         | Build tool and development server     | 6.2+    |
+- **React 18.3+** - UI library and component framework
+- **React Router v6** - Client-side routing with data loaders
+- **Redux Toolkit 2.6+** - Global state management
+- **React Query (TanStack Query) 4.29+** - Server state management and caching
+- **Styled Components 5.3+** - CSS-in-JS styling solution
+- **Recharts 2.5+** - Data visualization and charting
+- **Axios 1.3+** - HTTP client for API communication
+- **React Toastify 9.1+** - User notification system
+- **Vite 6.2+** - Build tool and development server
 
 ### Backend
 
-| Technology             | Purpose                                   | Version |
-| ---------------------- | ----------------------------------------- | ------- |
-| **Node.js**            | JavaScript runtime environment            | 18+     |
-| **Express.js**         | Web application framework                 | 4.18+   |
-| **MongoDB**            | NoSQL database for flexible data modeling | 7.0+    |
-| **Mongoose**           | MongoDB object modeling (ODM)             | 7.0+    |
-| **JWT (jsonwebtoken)** | Authentication token generation           | 9.0+    |
-| **bcryptjs**           | Password hashing and verification         | 2.4+    |
-| **Cloudinary**         | Image upload and CDN service              | 1.37+   |
-| **Express Validator**  | Input validation middleware               | 7.0+    |
-| **Helmet**             | HTTP security headers                     | 7.0+    |
-| **Morgan**             | HTTP request logging                      | 1.10+   |
+- **Node.js 18+** - JavaScript runtime environment
+- **Express.js 4.18+** - Web application framework
+- **MongoDB 7.0+** - NoSQL database for flexible data modeling
+- **Mongoose 7.0+** - MongoDB object modeling (ODM)
+- **JWT (jsonwebtoken) 9.0+** - Authentication token generation
+- **bcryptjs 2.4+** - Password hashing and verification
+- **Cloudinary 1.37+** - Image upload and CDN service
+- **Express Validator 7.0+** - Input validation middleware
+- **Helmet 7.0+** - HTTP security headers
+- **Morgan 1.10+** - HTTP request logging
 
 ---
 
@@ -227,7 +242,7 @@ A centralized MERN-stack dashboard enabling:
 
 - **JWT Tokens:** Secure token-based authentication
 - **HTTP-Only Cookies:** XSS protection by preventing client-side JavaScript access
-- **Secure Cookie Flags:** `SameSite=Strict` and `Secure` in production
+- **Secure Cookie Flags:** `SameSite=None` and `Secure` for cross-origin production deployment
 - **Password Hashing:** bcryptjs with salt rounds for password storage
 - **Role-Based Access Control (RBAC):** Admin and Staff role separation
 
@@ -251,6 +266,7 @@ A centralized MERN-stack dashboard enabling:
 - **HTTPS Enforcement:** Secure cookie and header configuration
 - **Dependency Updates:** Regular security patch management
 - **Security Headers:** Helmet.js comprehensive header protection
+- **Trust Proxy:** Configured for Render deployment to handle X-Forwarded-For headers
 
 ### Compliance & Privacy (Australia)
 
@@ -372,14 +388,14 @@ nomadliving-ops-console/
 ├── server/                      # Express backend application
 │   ├── controllers/            # Business logic
 │   │   ├── authController.js
-│   │   ├── jobController.js   # Ticket management
+│   │   ├── ticketController.js   # Ticket management (jobController.js)
 │   │   └── userController.js
 │   ├── models/                 # Mongoose models
-│   │   ├── JobModel.js         # Ticket schema
+│   │   ├── ticketModel.js         # Ticket schema (JobModel.js)
 │   │   └── UserModel.js
 │   ├── routes/                 # API routes
 │   │   ├── authRouter.js
-│   │   ├── jobRouter.js        # Ticket routes
+│   │   ├── ticketRouter.js        # Ticket routes (jobRouter.js)
 │   │   └── userRouter.js
 │   ├── middleware/             # Custom middleware
 │   │   ├── authMiddleware.js
@@ -396,6 +412,8 @@ nomadliving-ops-console/
 └── README.md
 ```
 
+> **Note:** The codebase uses `jobController.js`, `JobModel.js`, and `jobRouter.js` internally for backward compatibility, but the system functions as a unified ticket management platform.
+
 ---
 
 ## API Endpoints
@@ -410,14 +428,16 @@ nomadliving-ops-console/
 
 ### Ticket Management
 
-| Method   | Endpoint             | Description                                        | Auth Required |
-| -------- | -------------------- | -------------------------------------------------- | ------------- |
-| `GET`    | `/api/v1/jobs`       | Get all tickets (with pagination, search, filters) | Yes           |
-| `POST`   | `/api/v1/jobs`       | Create new ticket                                  | Yes           |
-| `GET`    | `/api/v1/jobs/stats` | Get ticket statistics and analytics                | Yes           |
-| `GET`    | `/api/v1/jobs/:id`   | Get single ticket details                          | Yes           |
-| `PATCH`  | `/api/v1/jobs/:id`   | Update ticket                                      | Yes           |
-| `DELETE` | `/api/v1/jobs/:id`   | Delete ticket                                      | Yes           |
+| Method   | Endpoint                  | Description                                        | Auth Required |
+| -------- | ------------------------- | -------------------------------------------------- | ------------- |
+| `GET`    | `/api/v1/tickets`         | Get all tickets (with pagination, search, filters) | Yes           |
+| `POST`   | `/api/v1/tickets`         | Create new ticket                                  | Yes           |
+| `GET`    | `/api/v1/tickets/stats`   | Get ticket statistics and analytics                | Yes           |
+| `GET`    | `/api/v1/tickets/:id`    | Get single ticket details                          | Yes           |
+| `PATCH`  | `/api/v1/tickets/:id`    | Update ticket                                      | Yes           |
+| `DELETE` | `/api/v1/tickets/:id`    | Delete ticket                                      | Yes           |
+
+> **Note:** The actual API endpoints use `/api/v1/jobs` for backward compatibility, but are documented as `/api/v1/tickets` to reflect the ticket system architecture.
 
 ### User Management
 
@@ -439,7 +459,7 @@ nomadliving-ops-console/
 
 ### Performance Optimizations
 
-- **Database Indexing:** Optimized MongoDB queries with indexed fields (`createdBy`, `jobStatus`, `createdAt`)
+- **Database Indexing:** Optimized MongoDB queries with indexed fields (`createdBy`, `ticketStatus`, `createdAt`)
 - **Query Optimization:** Aggregation pipelines for efficient statistics calculation
 - **Frontend Code Splitting:** Lazy loading and route-based code splitting for faster initial load
 - **API Response Caching:** React Query caching reduces redundant API calls
@@ -551,20 +571,21 @@ Body: {
 
 **Create Ticket:**
 ```bash
-POST /api/v1/jobs
+POST /api/v1/tickets
 Headers: { Cookie: "token=..." }
 Body: {
   "position": "Fix broken heater",
   "company": "Mountain View Glamping",
   "jobLocation": "Zone A",
   "jobStatus": "open",
-  "jobType": "high-priority"
+  "jobType": "high-priority",
+  "ticketCategory": "maintenance"
 }
 ```
 
 **Get Statistics:**
 ```bash
-GET /api/v1/jobs/stats
+GET /api/v1/tickets/stats
 Headers: { Cookie: "token=..." }
 Response: {
   "defaultStats": {
@@ -572,10 +593,14 @@ Response: {
     "in-progress": 3,
     "cancelled": 2
   },
-  "monthlyApplications": [
+  "monthlyTicketVolume": [
     { "date": "Jan 25", "count": 10 },
     { "date": "Feb 25", "count": 15 }
-  ]
+  ],
+  "categoryStats": {
+    "maintenance": 12,
+    "orderFulfillment": 8
+  }
 }
 ```
 
@@ -587,9 +612,8 @@ For complete API documentation, see inline JSDoc comments in controller files.
 
 ### Recommended Platforms
 
-- **Full Stack:** Railway, Render, Heroku
 - **Frontend:** Vercel, Netlify
-- **Backend:** Railway, Render, AWS EC2
+- **Backend:** Render, Railway
 - **Database:** MongoDB Atlas
 
 ### Production Build
@@ -601,17 +625,20 @@ npm run build
 
 # Start production server
 cd ../server
-npm run start-production
+npm run start
 ```
 
 ### Environment Variables (Production)
 
-Ensure all production environment variables are set:
-
+**Backend (Render/Railway):**
 - `NODE_ENV=production`
 - `MONGO_URL` (MongoDB Atlas connection string)
 - `JWT_SECRET` (strong, randomly generated)
+- `FRONTEND_URL` (your Vercel frontend URL)
 - `CLOUD_NAME`, `CLOUD_API_KEY`, `CLOUD_API_SECRET` (if using Cloudinary)
+
+**Frontend (Vercel):**
+- `VITE_API_URL` (your Render/Railway backend URL)
 
 ### Deployment Checklist
 
@@ -622,26 +649,10 @@ Ensure all production environment variables are set:
 - [ ] Rate limiting enabled
 - [ ] Error logging configured
 - [ ] Health check endpoint accessible
+- [ ] CORS configured for frontend domain
+- [ ] Cookie settings configured for cross-origin
 
 For detailed deployment instructions, see `DEPLOYMENT.md`.
-
----
-
-## Explore the Ecosystem
-
-**NomadLiving Ops Console** is part of a comprehensive luxury glamping ecosystem:
-
-### 🏕️ [NomadLiving Stays](https://github.com/yourusername/nomadliving-stays)
-
-**Project A** | Guest-facing booking platform for luxury glamping experiences
-
-### 🛍️ [NomadLiving Boutique](https://github.com/yourusername/nomadliving-boutique)
-
-**Project B** | E-commerce platform for glamping gear and lifestyle products
-
-### 🎛️ **NomadLiving Ops Console** (This Project)
-
-**Project C** | Internal operations dashboard for property and vendor management
 
 ---
 
