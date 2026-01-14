@@ -112,9 +112,11 @@ A centralized MERN-stack dashboard enabling:
 
 ### 🔍 Advanced Ticket Filtering
 
-- **Multi-criteria Search:** Filter by task, property, vendor, or location
+- **Category Filtering:** Filter by ticket type (Maintenance Tasks or Order Fulfillment)
+- **Multi-criteria Search:** Filter by task, property, vendor, order ID, customer, or location
 - **Status Filtering:** Quick access to tickets by workflow state
 - **Priority Filtering:** Sort by urgency level
+- **Combined Filters:** Use multiple filters simultaneously for precise results
 - **Pagination:** Efficient handling of large ticket volumes
 - **Real-time Updates:** Optimistic UI updates for instant feedback
 
