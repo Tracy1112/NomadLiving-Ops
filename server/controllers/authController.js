@@ -69,18 +69,30 @@ export const login = async (req, res) => {
   const cookieOptions = {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
+    path: '/', // Ensure cookie is available for all paths
   }
   
   // For production (cross-origin), use SameSite=None and Secure=true
   if (process.env.NODE_ENV === 'production') {
     cookieOptions.sameSite = 'None'
     cookieOptions.secure = true // Required for SameSite=None
+    // Don't set domain - let browser handle it for cross-origin
   } else {
     cookieOptions.sameSite = 'Strict'
     cookieOptions.secure = false
   }
   
   res.cookie('token', token, cookieOptions)
+  
+  // Debug logging (only in development)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Cookie set with options:', {
+      httpOnly: cookieOptions.httpOnly,
+      sameSite: cookieOptions.sameSite,
+      secure: cookieOptions.secure,
+      path: cookieOptions.path,
+    })
+  }
 
   res.status(StatusCodes.OK).json({ msg: 'user logged in', user })
 }
@@ -97,6 +109,7 @@ export const logout = (req, res) => {
   const cookieOptions = {
     httpOnly: true,
     expires: new Date(Date.now()),
+    path: '/', // Ensure cookie is cleared for all paths
   }
   
   // For production (cross-origin), use SameSite=None and Secure=true
