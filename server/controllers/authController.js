@@ -66,14 +66,20 @@ export const login = async (req, res) => {
 
   // Set HTTP-only cookie with token (secure in production)
   const oneDay = 1000 * 60 * 60 * 24
+  
+  // Determine if this is a cross-origin deployment
+  // If FRONTEND_URL is set and different from localhost, it's cross-origin
+  const isCrossOrigin = !!process.env.FRONTEND_URL && 
+    !process.env.FRONTEND_URL.includes('localhost')
+  
   const cookieOptions = {
     httpOnly: true,
     expires: new Date(Date.now() + oneDay),
     path: '/', // Ensure cookie is available for all paths
   }
   
-  // For production (cross-origin), use SameSite=None and Secure=true
-  if (process.env.NODE_ENV === 'production') {
+  // For cross-origin deployments, use SameSite=None and Secure=true
+  if (isCrossOrigin || process.env.NODE_ENV === 'production') {
     cookieOptions.sameSite = 'None'
     cookieOptions.secure = true // Required for SameSite=None
     // Don't set domain - let browser handle it for cross-origin
@@ -82,17 +88,18 @@ export const login = async (req, res) => {
     cookieOptions.secure = false
   }
   
-  res.cookie('token', token, cookieOptions)
+  // Always log cookie settings for debugging
+  console.log('Setting cookie with options:', {
+    httpOnly: cookieOptions.httpOnly,
+    sameSite: cookieOptions.sameSite,
+    secure: cookieOptions.secure,
+    path: cookieOptions.path,
+    isCrossOrigin,
+    NODE_ENV: process.env.NODE_ENV,
+    FRONTEND_URL: process.env.FRONTEND_URL,
+  })
   
-  // Debug logging (only in development)
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Cookie set with options:', {
-      httpOnly: cookieOptions.httpOnly,
-      sameSite: cookieOptions.sameSite,
-      secure: cookieOptions.secure,
-      path: cookieOptions.path,
-    })
-  }
+  res.cookie('token', token, cookieOptions)
 
   res.status(StatusCodes.OK).json({ msg: 'user logged in', user })
 }
@@ -106,14 +113,18 @@ export const login = async (req, res) => {
  * @returns {Object} JSON response confirming logout
  */
 export const logout = (req, res) => {
+  // Determine if this is a cross-origin deployment
+  const isCrossOrigin = !!process.env.FRONTEND_URL && 
+    !process.env.FRONTEND_URL.includes('localhost')
+  
   const cookieOptions = {
     httpOnly: true,
     expires: new Date(Date.now()),
     path: '/', // Ensure cookie is cleared for all paths
   }
   
-  // For production (cross-origin), use SameSite=None and Secure=true
-  if (process.env.NODE_ENV === 'production') {
+  // For cross-origin deployments, use SameSite=None and Secure=true
+  if (isCrossOrigin || process.env.NODE_ENV === 'production') {
     cookieOptions.sameSite = 'None'
     cookieOptions.secure = true // Required for SameSite=None
   } else {
