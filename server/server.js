@@ -47,9 +47,6 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 })
 
-// Serve static files from React build
-app.use(express.static(path.resolve(__dirname, '../client/dist')))
-
 // Health check endpoint (for Render to keep service alive)
 // Must be before other middleware to respond quickly
 app.get('/health', (req, res) => {
@@ -59,6 +56,10 @@ app.get('/health', (req, res) => {
     uptime: process.uptime()
   })
 })
+
+// Note: Static file serving removed - frontend is deployed separately on Vercel
+// If you need to serve frontend from backend, uncomment the following:
+// app.use(express.static(path.resolve(__dirname, '../client/dist')))
 
 // CORS Configuration
 const allowedOrigins = [
@@ -99,10 +100,11 @@ app.use('/api/v1/users', authenticateUser, userRouter)
 // Error handling middleware (must be after routes)
 app.use(errorHandlerMiddleware)
 
-// Serve React app for all other routes (SPA routing)
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
-})
+// Note: SPA routing removed - frontend is deployed separately on Vercel
+// If you need to serve frontend from backend, uncomment the following:
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
+// })
 
 // Server configuration
 const port = process.env.PORT || 5100
