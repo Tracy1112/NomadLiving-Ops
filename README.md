@@ -4,6 +4,7 @@
 
 A centralized MERN-stack operations dashboard enabling real-time ticket tracking, role-based access control (RBAC) for staff, and data visualization for operational efficiency across multiple glamping properties. Built with modern web technologies, demonstrating full-stack development capabilities and production-ready code quality.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit-brightgreen?style=for-the-badge)](https://nomadliving-ops.vercel.app)
 [![MERN Stack](https://img.shields.io/badge/Stack-MERN-green?style=for-the-badge)](https://nomadliving-ops.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 [![Node](https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge)](https://nodejs.org/)
@@ -55,7 +56,7 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 
 - 🏕️ **[NomadLiving Stays](https://nomadliving-stays.vercel.app)** - Guest booking platform
 - 🛍️ **[NomadLiving Boutique](https://nomadliving-boutique.vercel.app)** - E-commerce store
-- 🎛️ **[NomadLiving Ops Console](https://nomadliving-ops.vercel.app)** - Operations dashboard (This Project)
+- 🎛️ **[NomadLiving Ops Console](https://nomadliving-ops.vercel.app)** - Operations dashboard
 
 💡 **Note:** This is a portfolio project demonstrating full-stack development capabilities. The demo is deployed on Vercel's free tier.
 
@@ -73,7 +74,7 @@ Guest-facing booking platform for luxury glamping experiences
 
 E-commerce platform for glamping gear and lifestyle products
 
-### 🎛️ [NomadLiving Ops Console](https://nomadliving-ops.vercel.app) (This Project)
+### 🎛️ [NomadLiving Ops Console](https://nomadliving-ops.vercel.app)
 
 Internal operations dashboard for property and vendor management
 
@@ -134,7 +135,7 @@ This project is part of the **NomadLiving Digital Ecosystem**, a suite of interc
 
 - **NomadLiving Stays** - The flagship booking engine for curated glamping & tiny homes
 - **NomadLiving Boutique** - Integrated furniture and home decor e-commerce platform
-- **NomadLiving Ops Console** (This Project) - Operations and management dashboard for suppliers and staff
+- **NomadLiving Ops Console** - Operations and management dashboard for suppliers and staff
 
 The ecosystem demonstrates real-world development practices including:
 
