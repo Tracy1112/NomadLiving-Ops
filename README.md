@@ -4,15 +4,16 @@
 
 A centralized MERN-stack operations dashboard enabling real-time ticket tracking, role-based access control (RBAC) for staff, and data visualization for operational efficiency across multiple glamping properties. Built with modern web technologies, demonstrating full-stack development capabilities and production-ready code quality.
 
-![MERN Stack](https://img.shields.io/badge/Stack-MERN-green)
-![License](https://img.shields.io/badge/License-MIT-blue)
-![Node](https://img.shields.io/badge/Node.js-v18+-green)
-![React](https://img.shields.io/badge/React-v18+-blue)
-![Type](https://img.shields.io/badge/Type-B2B%20Internal-orange)
+[![MERN Stack](https://img.shields.io/badge/Stack-MERN-green?style=for-the-badge)](https://nomadliving-ops.vercel.app)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+[![Node](https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-v18+-blue?style=for-the-badge)](https://react.dev/)
+[![Type](https://img.shields.io/badge/Type-B2B%20Internal-orange?style=for-the-badge)](https://nomadliving-ops.vercel.app)
 
 **📋 Table of Contents**
 
 - [Overview](#-overview)
+- [Live Demo](#-live-demo)
 - [Explore the Ecosystem](#-explore-the-ecosystem)
 - [Problem & Solution](#-problem--solution)
 - [Key Features](#-key-features)
@@ -46,19 +47,33 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 
 ---
 
+## 🌐 Live Demo
+
+🔗 **Live Demo:** [https://nomadliving-ops.vercel.app](https://nomadliving-ops.vercel.app)
+
+**Explore the Ecosystem:**
+
+- 🏕️ **[NomadLiving Stays](https://nomadliving-stays.vercel.app)** - Guest booking platform
+- 🛍️ **[NomadLiving Boutique](https://nomadliving-boutique.vercel.app)** - E-commerce store
+- 🎛️ **[NomadLiving Ops Console](https://nomadliving-ops.vercel.app)** - Operations dashboard (This Project)
+
+💡 **Note:** This is a portfolio project demonstrating full-stack development capabilities. The demo is deployed on Vercel's free tier.
+
+---
+
 ## 🌐 Explore the Ecosystem
 
 **NomadLiving Ops Console** is part of a comprehensive luxury glamping ecosystem:
 
-### 🏕️ [NomadLiving Stays](https://github.com/yourusername/nomadliving-stays)
+### 🏕️ [NomadLiving Stays](https://nomadliving-stays.vercel.app)
 
 **Project A** | Guest-facing booking platform for luxury glamping experiences
 
-### 🛍️ [NomadLiving Boutique](https://github.com/yourusername/nomadliving-boutique)
+### 🛍️ [NomadLiving Boutique](https://nomadliving-boutique.vercel.app)
 
 **Project B** | E-commerce platform for glamping gear and lifestyle products
 
-### 🎛️ **NomadLiving Ops Console** (This Project)
+### 🎛️ [NomadLiving Ops Console](https://nomadliving-ops.vercel.app) (This Project)
 
 **Project C** | Internal operations dashboard for property and vendor management
 
@@ -78,6 +93,7 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 - **Response Time Delays:** Critical maintenance issues took 2-3 days to surface to management
 
 **Market Opportunity:**
+
 - Growing demand for operational efficiency in hospitality
 - Need for unified ticket management systems
 - Real-time analytics for data-driven decision making
@@ -88,6 +104,7 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 **Delivered Solution:** NomadLiving Ops Console provides a complete, production-ready platform that addresses all identified challenges:
 
 **For Staff & Property Managers:**
+
 - Unified ticket system for maintenance tasks and order fulfillment
 - Real-time dashboard with operational analytics
 - Advanced filtering and search capabilities
@@ -95,6 +112,7 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 - Dynamic form fields that adapt based on ticket type
 
 **For Operations Administrators:**
+
 - Platform-wide analytics and statistics
 - User management and role-based access control
 - Category breakdown (maintenance vs. orders)
@@ -102,6 +120,7 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 - Performance metrics and KPIs
 
 **For Platform Operators:**
+
 - Admin dashboard with system-wide statistics
 - User management and property oversight
 - Ticket trend analysis and operational insights
@@ -405,6 +424,7 @@ Open your browser and navigate to: **http://localhost:5173**
 ### Available Scripts
 
 **Server:**
+
 ```bash
 npm run server          # Start backend server
 npm run dev             # Start both server and client
@@ -413,6 +433,7 @@ npm run migrate         # Run data migration scripts
 ```
 
 **Client:**
+
 ```bash
 npm run dev             # Start development server
 npm run build           # Build for production
@@ -604,6 +625,7 @@ nomadliving-ops-console/
 **Current Status:** Manual testing and integration testing in development environment.
 
 **Recommended Testing Framework:**
+
 - **Backend:** Jest + Supertest for API endpoint testing
 - **Frontend:** React Testing Library + Jest for component testing
 - **E2E:** Playwright or Cypress for end-to-end testing
@@ -611,12 +633,14 @@ nomadliving-ops-console/
 ### Test Scenarios
 
 **Authentication & Authorization:**
+
 - User registration and login flows
 - JWT token validation and expiration
 - Role-based access control (RBAC) enforcement
 - Protected route access
 
 **Ticket Management:**
+
 - CRUD operations for tickets
 - Search and filtering functionality
 - Status transitions and workflow validation
@@ -624,12 +648,14 @@ nomadliving-ops-console/
 - Category classification (maintenance vs. order fulfillment)
 
 **Analytics & Statistics:**
+
 - Statistics aggregation accuracy
 - Chart data rendering
 - Monthly trend calculations
 - Category breakdown accuracy
 
 **Security:**
+
 - Input validation and sanitization
 - SQL/NoSQL injection prevention
 - XSS protection
@@ -660,6 +686,7 @@ npm run start
 ### Environment Variables (Production)
 
 **Backend (Render/Railway):**
+
 ```env
 NODE_ENV=production
 PORT=5100
@@ -672,6 +699,7 @@ CLOUD_API_SECRET=your_cloudinary_api_secret
 ```
 
 **Frontend (Vercel):**
+
 ```env
 VITE_API_URL=https://your-backend.onrender.com/api/v1
 ```
@@ -706,16 +734,19 @@ For detailed deployment instructions, see `DEPLOYMENT.md`.
 ### Performance Metrics
 
 **API Performance:**
+
 - Response Time: Average < 200ms for standard queries
 - Database Queries: Indexed queries execute in < 50ms
 - Concurrent Users: Supports 50+ concurrent users
 
 **Frontend Performance:**
+
 - Initial Bundle: < 2MB
 - First Contentful Paint: < 1.5s
 - Time to Interactive: < 2.5s
 
 **Database Performance:**
+
 - Query Optimization: 90%+ reduction in query count
 - Cache Strategy: 60-80% reduction in database queries
 - Response Time: 50-70% faster with optimized queries
@@ -723,12 +754,14 @@ For detailed deployment instructions, see `DEPLOYMENT.md`.
 ### Business Metrics
 
 **Platform Capabilities:**
+
 - Tickets Supported: Unlimited (MongoDB scalability)
 - Concurrent Users: Rate-limited for stability
 - Ticket Categories: Maintenance Tasks & Order Fulfillment
 - User Roles: Admin and Staff with granular permissions
 
 **User Experience:**
+
 - Search Performance: < 100ms with optimized queries
 - Ticket Creation: 4-step process (Category → Details → Status → Priority)
 - Error Recovery: Comprehensive error boundaries
@@ -741,6 +774,7 @@ For detailed deployment instructions, see `DEPLOYMENT.md`.
 This project showcases proficiency in:
 
 ### Frontend Development
+
 - React, React Router, TypeScript
 - Styled Components, CSS-in-JS
 - State management (Redux Toolkit, React Query)
@@ -748,6 +782,7 @@ This project showcases proficiency in:
 - Data visualization (Recharts)
 
 ### Backend Development
+
 - Node.js, Express.js
 - RESTful API design
 - Database design and optimization
@@ -755,17 +790,20 @@ This project showcases proficiency in:
 - Middleware development
 
 ### Database Management
+
 - MongoDB with Mongoose ODM
 - Query optimization and indexing
 - Schema design and data relationships
 - Aggregation pipelines
 
 ### Third-Party Integrations
+
 - Cloudinary for image storage
 - JWT for authentication
 - CORS for cross-origin requests
 
 ### Development Practices
+
 - Error handling & structured logging
 - Performance optimization & monitoring
 - Security best practices
@@ -777,16 +815,19 @@ This project showcases proficiency in:
 ## 🇦🇺 Australian Market Considerations
 
 ### Privacy & Compliance
+
 - **Australian Privacy Principles (APPs):** Built with APPs compliance in mind
 - **Data Protection:** Secure handling of user data and operational information
 - **Data Retention:** Configurable data retention policies for operational records
 
 ### Accessibility
+
 - **WCAG 2.1 AA:** Accessibility considerations for inclusive design
 - **Screen Reader Support:** Semantic HTML and ARIA labels
 - **Keyboard Navigation:** Full keyboard accessibility
 
 ### Localization
+
 - **Timezone Support:** AEST/AEDT handling for Australian users
 - **Date Formatting:** Australian date format preferences
 - **Currency Display:** AUD formatting throughout the platform (if applicable)
