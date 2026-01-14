@@ -106,6 +106,10 @@ app.use(
   })
 )
 
+// Trust proxy - Required for Render and other proxy services
+// This allows Express to trust the X-Forwarded-* headers from the proxy
+app.set('trust proxy', 1)
+
 // Middleware
 app.use(morgan('dev')) // HTTP request logger
 app.use(express.json()) // Parse JSON request bodies
