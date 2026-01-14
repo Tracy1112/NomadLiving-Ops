@@ -1,6 +1,6 @@
 # 🎛️ NomadLiving Ops Console - Internal Operations Dashboard
 
-> **Project C of the NomadLiving Ecosystem** | Internal Operations Dashboard for Property Management & Vendor Coordination
+> **Part of the NomadLiving Ecosystem** | Internal Operations Dashboard for Property Management & Vendor Coordination
 
 A centralized MERN-stack operations dashboard enabling real-time ticket tracking, role-based access control (RBAC) for staff, and data visualization for operational efficiency across multiple glamping properties. Built with modern web technologies, demonstrating full-stack development capabilities and production-ready code quality.
 
@@ -67,15 +67,15 @@ As part of the NomadLiving Digital Ecosystem, it connects seamlessly with **Noma
 
 ### 🏕️ [NomadLiving Stays](https://nomadliving-stays.vercel.app)
 
-**Project A** | Guest-facing booking platform for luxury glamping experiences
+Guest-facing booking platform for luxury glamping experiences
 
 ### 🛍️ [NomadLiving Boutique](https://nomadliving-boutique.vercel.app)
 
-**Project B** | E-commerce platform for glamping gear and lifestyle products
+E-commerce platform for glamping gear and lifestyle products
 
 ### 🎛️ [NomadLiving Ops Console](https://nomadliving-ops.vercel.app) (This Project)
 
-**Project C** | Internal operations dashboard for property and vendor management
+Internal operations dashboard for property and vendor management
 
 ---
 
