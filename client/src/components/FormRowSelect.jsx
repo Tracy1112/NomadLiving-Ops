@@ -9,8 +9,8 @@ const formatOptionLabel = (value) => {
   if (value === 'maintenance' || value === 'remote') return 'Low Priority'
   
   // Ticket Status formatting
-  // Maps: pending → Open, interview → In Progress, declined → Closed
-  if (value === 'open' || value === 'pending' || value === 'maintenance') return 'Open'
+  // Maps: pending → Open / Pending, interview → In Progress, declined → Closed
+  if (value === 'open' || value === 'pending' || value === 'maintenance') return 'Open / Pending'
   if (value === 'in-progress' || value === 'active' || value === 'interview') return 'In Progress'
   if (value === 'cancelled' || value === 'inactive' || value === 'declined') return 'Closed'
   

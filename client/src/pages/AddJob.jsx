@@ -33,20 +33,21 @@ const AddJob = () => {
           <FormRow 
             type="text" 
             name="position" 
-            labelText="task / issue"
-            placeholder="e.g., Fix AC, Deep Clean"
+            labelText="subject / reference id"
+            placeholder="e.g., Repair AC unit OR Order #2491"
           />
           <FormRow 
             type="text" 
             name="company" 
-            labelText="property / unit"
-            placeholder="e.g., Cabin 01, Airstream Beta"
+            labelText="entity / customer"
+            placeholder="e.g., Sunset Cabin OR Customer: John Doe"
           />
           <FormRow
             type="text"
-            labelText="zone / area"
+            labelText="location / warehouse"
             name="jobLocation"
             defaultValue={user.location}
+            placeholder="e.g., North Site OR Warehouse B"
           />
           <FormRowSelect
             labelText="ticket status"

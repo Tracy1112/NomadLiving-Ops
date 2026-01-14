@@ -60,20 +60,23 @@ const EditJob = () => {
           <FormRow 
             type="text" 
             name="position" 
-            labelText="task / issue"
-            defaultValue={job.position} 
+            labelText="subject / reference id"
+            defaultValue={job.position}
+            placeholder="e.g., Repair AC unit OR Order #2491"
           />
           <FormRow 
             type="text" 
             name="company" 
-            labelText="property / unit"
-            defaultValue={job.company} 
+            labelText="entity / customer"
+            defaultValue={job.company}
+            placeholder="e.g., Sunset Cabin OR Customer: John Doe"
           />
           <FormRow
             type="text"
             name="jobLocation"
-            labelText="zone / area"
+            labelText="location / warehouse"
             defaultValue={job.jobLocation}
+            placeholder="e.g., North Site OR Warehouse B"
           />
           <FormRowSelect
             name="jobStatus"

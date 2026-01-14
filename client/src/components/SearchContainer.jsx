@@ -33,7 +33,7 @@ const SearchContainer = () => {
             type="search"
             name="search"
             defaultValue={search}
-            placeholder="Search by task, property, or vendor..."
+            placeholder="Search by subject, entity, order ID, or location..."
             onChange={debounce((form) => {
               submit(form)
             })}
