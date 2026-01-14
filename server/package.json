@@ -15,14 +15,19 @@
     "update-content": "node server/utils/updateJobContent.js"
   },
   "keywords": [
-    "job-tracker",
+    "operations-dashboard",
+    "property-management",
+    "ticket-management",
     "mern-stack",
     "express",
     "mongodb",
     "rest-api",
     "jwt-authentication",
-    "job-application",
-    "career-management"
+    "rbac",
+    "supply-chain",
+    "vendor-management",
+    "glamping",
+    "hospitality-tech"
   ],
   "author": "",
   "license": "MIT",

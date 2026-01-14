@@ -1,8 +1,11 @@
 /**
- * MeetJob Backend Server
+ * NomadLiving Ops Console - Backend Server
  * 
- * Express.js server for the MeetJob job application tracking system.
- * Handles API routes, authentication, database connections, and serves the React frontend.
+ * Express.js REST API server for the NomadLiving Ops Console operations dashboard.
+ * Handles API routes, authentication, database connections, and operational analytics.
+ * 
+ * Business Context: Internal operations dashboard for luxury glamping brand property
+ * management, maintenance tracking, and vendor coordination across multiple sites.
  * 
  * @module server
  * @requires express
