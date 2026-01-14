@@ -66,12 +66,21 @@ export const login = async (req, res) => {
 
   // Set HTTP-only cookie with token (secure in production)
   const oneDay = 1000 * 60 * 60 * 24
-  res.cookie('token', token, {
+  const cookieOptions = {
     httpOnly: true,
-    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict', // 'None' for cross-origin in production
-    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
     expires: new Date(Date.now() + oneDay),
-  })
+  }
+  
+  // For production (cross-origin), use SameSite=None and Secure=true
+  if (process.env.NODE_ENV === 'production') {
+    cookieOptions.sameSite = 'None'
+    cookieOptions.secure = true // Required for SameSite=None
+  } else {
+    cookieOptions.sameSite = 'Strict'
+    cookieOptions.secure = false
+  }
+  
+  res.cookie('token', token, cookieOptions)
 
   res.status(StatusCodes.OK).json({ msg: 'user logged in', user })
 }
@@ -85,11 +94,20 @@ export const login = async (req, res) => {
  * @returns {Object} JSON response confirming logout
  */
 export const logout = (req, res) => {
-  res.cookie('token', 'logout', {
+  const cookieOptions = {
     httpOnly: true,
-    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Strict',
-    secure: process.env.NODE_ENV === 'production',
     expires: new Date(Date.now()),
-  })
+  }
+  
+  // For production (cross-origin), use SameSite=None and Secure=true
+  if (process.env.NODE_ENV === 'production') {
+    cookieOptions.sameSite = 'None'
+    cookieOptions.secure = true // Required for SameSite=None
+  } else {
+    cookieOptions.sameSite = 'Strict'
+    cookieOptions.secure = false
+  }
+  
+  res.cookie('token', 'logout', cookieOptions)
   res.status(StatusCodes.OK).json({ msg: 'user logged out!' })
 }

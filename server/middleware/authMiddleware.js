@@ -7,8 +7,17 @@ import { verifyJWT } from '../utils/tokenUtils.js'
 
 export const authenticateUser = async (req, res, next) => {
   const { token } = req.cookies
+  
+  // Debug logging (only in development)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Auth middleware - Cookies received:', Object.keys(req.cookies))
+    console.log('Auth middleware - Token present:', !!token)
+  }
+  
   if (!token) {
-    console.log('No token found, authentication failed') // Debug message
+    if (process.env.NODE_ENV === 'development') {
+      console.log('No token found in cookies, authentication failed')
+    }
     throw new UnauthenticatedError('authentication invalid')
   }
 

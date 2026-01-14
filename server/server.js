@@ -71,20 +71,38 @@ const allowedOrigins = [
   'http://localhost:3000',
 ].filter(Boolean) // Remove undefined values
 
+// Log allowed origins for debugging (only in development)
+if (process.env.NODE_ENV === 'development') {
+  console.log('Allowed CORS origins:', allowedOrigins)
+  console.log('FRONTEND_URL:', process.env.FRONTEND_URL)
+}
+
 app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (mobile apps, Postman, etc.)
-      if (!origin) return callback(null, true)
-      if (allowedOrigins.includes(origin) || process.env.NODE_ENV === 'development') {
-        callback(null, true)
-      } else {
-        callback(new Error('Not allowed by CORS'))
+      if (!origin) {
+        return callback(null, true)
       }
+      
+      // In production, check if origin is in allowed list
+      if (process.env.NODE_ENV === 'production') {
+        if (allowedOrigins.includes(origin)) {
+          return callback(null, true)
+        } else {
+          console.error('CORS blocked origin:', origin)
+          console.error('Allowed origins:', allowedOrigins)
+          return callback(new Error('Not allowed by CORS'))
+        }
+      }
+      
+      // In development, allow all origins
+      callback(null, true)
     },
-    credentials: true, // Allow cookies to be sent
-    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
+    credentials: true, // Allow cookies to be sent with cross-origin requests
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['Set-Cookie'],
   })
 )
 
