@@ -4,13 +4,14 @@ import { Form, useSubmit, Link } from 'react-router-dom'
 import {
   TICKET_TYPE,
   TICKET_STATUS,
+  TICKET_CATEGORY,
   PROPERTY_SORT_BY,
 } from '../../../server/utils/constants.js'
 import { useAllJobsContext } from '../pages/AllJobs'
 
 const SearchContainer = () => {
   const { searchValues } = useAllJobsContext()
-  const { search, jobStatus, jobType, sort } = searchValues
+  const { search, jobStatus, jobType, ticketCategory, sort } = searchValues
   const submit = useSubmit()
 
   const debounce = (onChange) => {
@@ -37,6 +38,15 @@ const SearchContainer = () => {
             onChange={debounce((form) => {
               submit(form)
             })}
+          />
+          <FormRowSelect
+            labelText="ticket category"
+            name="ticketCategory"
+            list={['all', ...Object.values(TICKET_CATEGORY)]}
+            defaultValue={ticketCategory}
+            onChange={(e) => {
+              submit(e.currentTarget.form)
+            }}
           />
           <FormRowSelect
             labelText="ticket status"

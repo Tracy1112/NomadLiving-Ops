@@ -47,15 +47,26 @@ const formatType = (type) => {
   return typeMap[type] || type
 }
 
+// Format ticket category for display
+const formatCategory = (category) => {
+  if (!category) return null
+  const categoryMap = {
+    maintenance: 'Maintenance',
+    'order-fulfillment': 'Order',
+  }
+  return categoryMap[category] || category
+}
+
 // Ticket component (formerly Job component) - NomadLiving Ops Console
 const Job = ({
   _id,
-  position, // Task / Issue
-  company, // Property / Vendor
-  jobLocation, // Zone / Area (database field name: jobLocation)
+  position, // Task / Issue / Order Reference
+  company, // Property / Vendor / Customer
+  jobLocation, // Zone / Area / Warehouse (database field name: jobLocation)
   jobType, // Priority/Type (database field name: jobType, represents ticketType/priority)
   createdAt,
   jobStatus, // Ticket Status (database field name: jobStatus, represents ticketStatus)
+  ticketCategory, // Ticket Category (maintenance/order-fulfillment)
 }) => {
   const date = day(createdAt).format('MMM Do, YYYY')
   // Normalize status for CSS class (support both old and new values)
@@ -78,8 +89,20 @@ const Job = ({
         {/* Property/Unit icon - first letter of property name */}
         <div className="main-icon">{company.charAt(0).toUpperCase()}</div>
         <div className="info">
-          <h5>{position}</h5> {/* Task / Issue - main title */}
-          <p>{company}</p> {/* Property / Unit - subtitle */}
+          <h5>
+            {position} {/* Task / Issue / Order Reference - main title */}
+            {ticketCategory && (
+              <span style={{ 
+                fontSize: '0.7rem', 
+                fontWeight: 'normal', 
+                color: '#6b7280',
+                marginLeft: '0.5rem'
+              }}>
+                ({formatCategory(ticketCategory)})
+              </span>
+            )}
+          </h5>
+          <p>{company}</p> {/* Property / Unit / Customer - subtitle */}
         </div>
       </header>
       <div className="content">

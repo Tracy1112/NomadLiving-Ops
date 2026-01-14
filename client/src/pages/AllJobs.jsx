@@ -7,11 +7,12 @@ import { useQuery } from '@tanstack/react-query'
 
 const allJobsQuery = (params) => {
   // Note: API uses jobStatus/jobType for compatibility, but these represent ticketStatus/ticketType
-  const { search, jobStatus, jobType, sort, page } = params
+  const { search, jobStatus, jobType, ticketCategory, sort, page } = params
   return {
     queryKey: [
       'jobs', // Query key remains 'jobs' for cache compatibility
       search ?? '',
+      ticketCategory ?? 'all', // Ticket category filter
       jobStatus ?? 'all', // Represents ticketStatus
       jobType ?? 'all', // Represents ticketType/priority
       sort ?? 'newest',
@@ -19,7 +20,7 @@ const allJobsQuery = (params) => {
     ],
     queryFn: async () => {
       const { data } = await customFetch.get('/jobs', {
-        params, // API expects jobStatus/jobType
+        params, // API expects jobStatus/jobType/ticketCategory
       })
       return data
     },

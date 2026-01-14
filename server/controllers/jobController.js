@@ -26,7 +26,7 @@ import day from 'dayjs'
  */
 export const getAllJobs = async (req, res) => {
   // Note: Using jobStatus/jobType in query params for API compatibility, but these represent ticketStatus/ticketType
-  const { search, jobStatus: ticketStatus, jobType: ticketType, sort } = req.query
+  const { search, jobStatus: ticketStatus, jobType: ticketType, ticketCategory, sort } = req.query
 
   const queryObject = {
     createdBy: req.user.userId,
@@ -34,9 +34,12 @@ export const getAllJobs = async (req, res) => {
 
   if (search) {
     queryObject.$or = [
-      { position: { $regex: search, $options: 'i' } }, // Task/Issue
-      { company: { $regex: search, $options: 'i' } }, // Property/Vendor
+      { position: { $regex: search, $options: 'i' } }, // Task/Issue/Order Reference
+      { company: { $regex: search, $options: 'i' } }, // Property/Vendor/Customer
     ]
+  }
+  if (ticketCategory && ticketCategory !== 'all') {
+    queryObject.ticketCategory = ticketCategory // Filter by ticket category (maintenance/order-fulfillment)
   }
   if (ticketStatus && ticketStatus !== 'all') {
     queryObject.jobStatus = ticketStatus // Database field: jobStatus, represents ticketStatus
@@ -150,10 +153,22 @@ export const deleteJob = async (req, res) => {
  * @returns {Promise<Object>} JSON response with ticket statistics
  */
 export const showStats = async (req, res) => {
+  // Get status statistics
   let stats = await Job.aggregate([
     { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
     { $group: { _id: '$jobStatus', count: { $sum: 1 } } },
   ])
+
+  // Get category statistics
+  let categoryStats = await Job.aggregate([
+    { $match: { createdBy: new mongoose.Types.ObjectId(req.user.userId) } },
+    { $group: { _id: '$ticketCategory', count: { $sum: 1 } } },
+  ])
+
+  const categoryCounts = categoryStats.reduce((acc, curr) => {
+    acc[curr._id || 'maintenance'] = curr.count
+    return acc
+  }, {})
 
   stats = stats.reduce((acc, curr) => {
     const { _id: title, count } = curr
@@ -205,5 +220,12 @@ export const showStats = async (req, res) => {
     })
     .reverse()
 
-  res.status(StatusCodes.OK).json({ defaultStats, monthlyApplications: monthlyTickets })
+  res.status(StatusCodes.OK).json({ 
+    defaultStats, 
+    monthlyApplications: monthlyTickets,
+    categoryStats: {
+      maintenance: categoryCounts.maintenance || 0,
+      orderFulfillment: categoryCounts['order-fulfillment'] || 0,
+    }
+  })
 }

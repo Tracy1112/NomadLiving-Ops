@@ -1,11 +1,12 @@
 import { FormRow, FormRowSelect, SubmitBtn } from '../components'
 import Wrapper from '../assets/wrappers/DashboardFormPage'
 import { useLoaderData, useParams } from 'react-router-dom'
-import { TICKET_STATUS, TICKET_TYPE } from '../../../server/utils/constants'
+import { TICKET_STATUS, TICKET_TYPE, TICKET_CATEGORY } from '../../../server/utils/constants'
 import { Form, redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import customFetch from '../utils/customFetch'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 
 const singleJobQuery = (id) => {
   return {
@@ -52,42 +53,90 @@ const EditJob = () => {
     data: { job },
   } = useQuery(singleJobQuery(id))
 
+  const [ticketCategory, setTicketCategory] = useState(
+    job?.ticketCategory || TICKET_CATEGORY.MAINTENANCE
+  )
+
+  // Dynamic placeholders and labels based on ticket category
+  const getFieldConfig = () => {
+    if (ticketCategory === TICKET_CATEGORY.ORDER_FULFILLMENT) {
+      return {
+        position: {
+          label: 'order reference id',
+          placeholder: 'e.g., Order #2491, PO-2025-1234'
+        },
+        company: {
+          label: 'customer name',
+          placeholder: 'e.g., Customer: John Doe, ABC Company'
+        },
+        location: {
+          label: 'warehouse / shipping location',
+          placeholder: 'e.g., Warehouse B, Shipping Dock 3'
+        }
+      }
+    } else {
+      return {
+        position: {
+          label: 'task / issue',
+          placeholder: 'e.g., Repair AC unit, Deep Clean Required'
+        },
+        company: {
+          label: 'property / unit',
+          placeholder: 'e.g., Sunset Cabin, Airstream Beta'
+        },
+        location: {
+          label: 'zone / area',
+          placeholder: 'e.g., North Site, Zone A - North Camp'
+        }
+      }
+    }
+  }
+
+  const fieldConfig = getFieldConfig()
+
   return (
     <Wrapper>
       <Form method="post" className="form">
         <h4 className="form-title">edit ticket</h4>
         <div className="form-center">
+          <FormRowSelect
+            labelText="ticket category"
+            name="ticketCategory"
+            defaultValue={job?.ticketCategory || TICKET_CATEGORY.MAINTENANCE}
+            list={Object.values(TICKET_CATEGORY)}
+            onChange={(e) => setTicketCategory(e.target.value)}
+          />
           <FormRow 
             type="text" 
             name="position" 
-            labelText="subject / reference id"
-            defaultValue={job.position}
-            placeholder="e.g., Repair AC unit OR Order #2491"
+            labelText={fieldConfig.position.label}
+            defaultValue={job?.position}
+            placeholder={fieldConfig.position.placeholder}
           />
           <FormRow 
             type="text" 
             name="company" 
-            labelText="entity / customer"
-            defaultValue={job.company}
-            placeholder="e.g., Sunset Cabin OR Customer: John Doe"
+            labelText={fieldConfig.company.label}
+            defaultValue={job?.company}
+            placeholder={fieldConfig.company.placeholder}
           />
           <FormRow
             type="text"
             name="jobLocation"
-            labelText="location / warehouse"
-            defaultValue={job.jobLocation}
-            placeholder="e.g., North Site OR Warehouse B"
+            labelText={fieldConfig.location.label}
+            defaultValue={job?.jobLocation}
+            placeholder={fieldConfig.location.placeholder}
           />
           <FormRowSelect
             name="jobStatus"
             labelText="ticket status"
-            defaultValue={job.jobStatus}
+            defaultValue={job?.jobStatus}
             list={Object.values(TICKET_STATUS)}
           />
           <FormRowSelect
             name="jobType"
             labelText="priority"
-            defaultValue={job.jobType}
+            defaultValue={job?.jobType}
             list={Object.values(TICKET_TYPE)}
           />
           <SubmitBtn formBtn />

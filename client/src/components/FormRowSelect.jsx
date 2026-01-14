@@ -1,6 +1,10 @@
 // Format option labels for display - NomadLiving Ops Console
 // Maps database values to user-friendly display labels
 const formatOptionLabel = (value) => {
+  // Ticket Category formatting
+  if (value === 'maintenance') return 'Maintenance Task'
+  if (value === 'order-fulfillment') return 'Order Fulfillment'
+  
   // Priority/Type formatting (check before status to avoid conflict with 'maintenance' type)
   // Maps: full-time → High Priority, part-time → Normal Priority, remote → Low Priority, internship → Emergency
   if (value === 'high-priority' || value === 'full-time' || value === 'luxury-tent') return 'High Priority'

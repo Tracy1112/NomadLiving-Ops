@@ -53,3 +53,10 @@ export const PROPERTY_SORT_BY = {
 
 // Legacy support
 export const JOB_SORT_BY = PROPERTY_SORT_BY
+
+// Ticket category constants for NomadLiving Ops Console
+// Distinguishes between maintenance tasks and order fulfillment
+export const TICKET_CATEGORY = {
+  MAINTENANCE: 'maintenance',
+  ORDER_FULFILLMENT: 'order-fulfillment',
+}

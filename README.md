@@ -92,17 +92,23 @@ A centralized MERN-stack dashboard enabling:
 
 ### 🎫 Ticket Management System
 
-- **Create & Track Tickets:** Maintenance requests and vendor orders in one system
+- **Unified Ticket System:** Single platform for both maintenance tasks and order fulfillment
+- **Ticket Category Classification:**
+  - **Maintenance Tasks** → Property repairs, cleaning, HVAC, plumbing
+  - **Order Fulfillment** → Vendor orders, shipping tickets, customer deliveries
+- **Dynamic Form Fields:** Form labels and placeholders adapt based on selected category
+  - Maintenance: "Task/Issue", "Property/Unit", "Zone/Area"
+  - Order Fulfillment: "Order Reference ID", "Customer Name", "Warehouse/Shipping Location"
 - **Workflow State Management:**
-  - **Open** → New tickets awaiting assignment
-  - **In Progress** → Active work in progress
+  - **Open / Pending** → New tickets awaiting assignment or orders pending shipment
+  - **In Progress** → Active work in progress or orders being processed
   - **Closed** → Completed or cancelled tickets
 - **Priority Classification:**
   - **High Priority** → Urgent maintenance or critical orders
   - **Normal Priority** → Routine operations
   - **Low Priority** → Non-urgent tasks
   - **Emergency** → Immediate attention required
-- **Property/Vendor Association:** Link tickets to specific properties or vendor relationships
+- **Property/Vendor/Customer Association:** Link tickets to specific properties, vendors, or customers
 
 ### 🔍 Advanced Ticket Filtering
 
@@ -115,11 +121,13 @@ A centralized MERN-stack dashboard enabling:
 ### 📊 Operational Analytics
 
 - **Performance Dashboard:** Real-time statistics on ticket volumes and completion rates
+- **Category Analytics:** Separate statistics for maintenance tasks and order fulfillment
 - **Data Visualization:** Interactive charts powered by Recharts
   - Area charts for trend analysis
   - Bar charts for comparative metrics
 - **Monthly Trends:** Track operational patterns over time
 - **Status Distribution:** Visual breakdown of ticket states
+- **Category Breakdown:** View statistics by ticket category (maintenance vs. orders)
 - **Admin Insights:** System-wide statistics for management decisions
 
 ### 👥 Staff Profile Management

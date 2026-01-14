@@ -5,7 +5,8 @@ import {
   PROPERTY_STATUS, 
   PROPERTY_TYPE,
   TICKET_STATUS,
-  TICKET_TYPE
+  TICKET_TYPE,
+  TICKET_CATEGORY
 } from '../utils/constants.js'
 
 // Combine all status/type values for enum validation (support legacy and new)
@@ -22,17 +23,22 @@ const allTypeValues = [
 
 const jobSchema = new mongoose.Schema(
   {
-    company: String, // Now: Property / Vendor
-    position: String, // Now: Task / Issue
+    company: String, // Now: Property / Vendor / Customer
+    position: String, // Now: Task / Issue / Subject / Reference ID
     jobStatus: {
       type: String,
       enum: allStatusValues,
-      default: TICKET_STATUS.OPEN, // New default: 'open' → UI Display: "Open"
+      default: TICKET_STATUS.OPEN, // New default: 'open' → UI Display: "Open / Pending"
     },
     jobType: {
       type: String,
       enum: allTypeValues,
       default: TICKET_TYPE.HIGH_PRIORITY, // New default: 'high-priority' → UI Display: "High Priority"
+    },
+    ticketCategory: {
+      type: String,
+      enum: Object.values(TICKET_CATEGORY),
+      default: TICKET_CATEGORY.MAINTENANCE, // Default: maintenance task
     },
     jobLocation: {
       type: String,
