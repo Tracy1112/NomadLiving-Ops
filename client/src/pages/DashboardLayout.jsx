@@ -25,11 +25,12 @@ export const loader = (queryClient) => async () => {
 const DashboardContext = createContext()
 
 const DashboardLayout = ({ queryClient }) => {
-  const { user } = useQuery(userQuery).data
+  const { data, isLoading, error } = useQuery(userQuery)
+  const user = data?.user || null
 
   const navigate = useNavigate()
   const navigation = useNavigation()
-  const isPageLoading = navigation.state === 'loading'
+  const isPageLoading = navigation.state === 'loading' || isLoading
   const [showSidebar, setShowSidebar] = useState(false)
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme())
   const [isAuthError, setIsAuthError] = useState(false)
