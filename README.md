@@ -33,26 +33,19 @@ NomadLiving Ops is the internal operations backbone of the NomadLiving ecosystem
 
 ## Getting Started
 
-```bash
-git clone https://github.com/Tracy1112/NomadLiving-Ops.git
-cd NomadLiving-Ops
+    git clone https://github.com/Tracy1112/NomadLiving-Ops.git
+    cd NomadLiving-Ops
+    cd server && npm install
+    cd ../client && npm install
+    cp env.example server/.env
+    cd server && npm run dev
 
-# Install dependencies
-cd server && npm install
-cd ../client && npm install
-
-# Configure environment
-cp env.example server/.env   # add MONGO_URL, JWT_SECRET, etc.
-
-# Start dev server (runs both client + server)
-cd server && npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173).
+Open http://localhost:5173
 
 ## Project Structure
-client/     # React frontend (components, pages, Redux slices)
-server/     # Express backend (controllers, models, routes, middleware)
+
+    client/     React frontend (components, pages, Redux slices)
+    server/     Express backend (controllers, models, routes, middleware)
 
 ## Ecosystem
 
@@ -62,6 +55,12 @@ server/     # Express backend (controllers, models, routes, middleware)
 | **Boutique** | React/Redux e-commerce store | [nomadliving-boutique.vercel.app](https://nomadliving-boutique.vercel.app) |
 | **Ops** (this repo) | MERN internal dashboard | [nomadliving-ops.vercel.app](https://nomadliving-ops.vercel.app) |
 
+## Developer
+
+**Tracy Kong** — Full-Stack Software Engineer, Sydney 🇦🇺
+
+[Portfolio](https://tracy-portfolio-nine.vercel.app) · [LinkedIn](https://www.linkedin.com/in/tracykong1212/)
+
 ## License
 
-MIT · [Tracy Kong](https://www.linkedin.com/in/tracykong1212/) · [Portfolio](https://tracy-portfolio-nine.vercel.app)
+MIT
